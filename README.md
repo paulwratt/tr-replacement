@@ -31,24 +31,27 @@ There is no difference, it is a superset, so all the command line switches avail
 -W              write chracters excluded from `-a` in final output
 ```
 The switches with `n` and `m` work the same as `{n,m}` does in regular expresions, so:  
-`tr2 -a 10 a A   ` will only apply matches to the first 10 characters.  
+`tr2 -a 10 a A   ` will only apply matches to the first 10 characters, discard the rest.  
+`tr2 -aW 1,10 a A` will only apply matches to the first 10 characters, dont discard the rest.  
 `tr2 -n 5 -d a   ` will stop deleting charcater `a` after the 5th match.  
 `tr2 -n 2,5 a b  ` will replace at least 2, but not more than 5 characters `a` with character `b`.  
 `tr2 -m 5 -d B   ` will delete only from the 5th match of character `B`.  
 `tr2 -m 2,5 a A  ` will replace only from the 2nd to the 5th match of characters `a` with character `A`.  
 
 However the switches with `n` and `m` also have a `-` action not found in regular expresions, so:  
-`tr2 -a 2,-2 a A ` will only apply matches from to the string line 2 characters indented from each end.  
+`tr2 -a -10 a A  ` will only apply matches to the last 10 characters, discard the rest.  
+`tr2 -a 2,-2 a A ` will only apply matches from to the string line 2 characters indented from each end, discard the rest.  
 `tr2 -n -5 -d a  ` will only delete the last 5 matches of charcater `a`.  
 `tr2 -n 2,-5 a B ` will replace the last 5 matches, but stop after 2 matches of characters `a` with character `B`.  
 `tr2 -n -7,5 a b ` will replace the last 7 matches, but not more than 5 characters `a` with character `b`.  
 `tr2 -m -5,-2 a A` will replace only from the last 5 matches to the last 2nd match of characters `a` with character `A`.  
 
 Also with `n` and `m` you can use `[:even:]` and `[:odd:]` to manipulate the switch input and output. the same can be done with `th` when added to a number, therefore:  
-`tr2 -a [:even:] a A ` will only apply matches on even numbered chacaters.  
-`tr2 -a 3th a A      ` will only apply matches every 3rd chacaters.  
-`tr2 -n 5th -d a     ` will only delete every 5th matches of charcater `a`.  
-`tr2 -m [:odd:] -d a ` will only delete every odd numbered match of charcater `a`.  
+`tr2 -a [:even:] a A ` will only apply matches on _even_ numbered chacaters, discard the rest.  
+`tr2 -a 3th a A      ` will only apply matches every _3rd_ chacater, discard the rest.  
+`tr2 -Wa [:odd:] b B ` will only apply matches on _odd_ numbered chacaters, dont discard the rest.  
+`tr2 -n 5th -d a     ` will only delete the _5th_ match of charcater `a`.  
+`tr2 -m [:odd:] -d a ` will only delete every _odd_ numbered match of charcater `a`.  
 
 That covers just about anything I can think of for the basic extension to `tr`. The following allows `tr` to manipulated input an output text string lines before and after actions taken, using regular expression matching to decide when those actions are taken, and wheather or not to output the original line (ala `sed`) or no line at all (ala `grep`) when there are not pattern matches.
 
