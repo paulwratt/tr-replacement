@@ -17,7 +17,7 @@ There is no difference, it is a superset, so all the command line switches avail
 ```
 -2              errors if not tr2/tr3 (has tr extensions)
 -3              errors if not tr3 (has regular expressions)
--a <n>[,<m>]    only action on characters.
+-a <n>[,<m>]    only action on characters, discard the rest.
 -n <n>[,<m>]    number of replacements.
 -m <n>[,<m>]    begin and end of replacements.
 -o <n>[,<m>]    omit characters before input.
@@ -28,7 +28,7 @@ There is no difference, it is a superset, so all the command line switches avail
 -Z              use repeating "background" replacement of <string> with `-S` instead of SET2
 -R              reverse initial input string
 -r              reverse final output string
--W              write chracters excluded from `-a` in final output
+-W              also write the characters excluded from `-a` in final output
 ```
 The switches with `n` and `m` work the same as `{n,m}` does in regular expresions, so:  
 `tr2 -a 10 a A   ` will only apply matches to the first 10 characters, discard the rest.  
