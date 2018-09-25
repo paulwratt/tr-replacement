@@ -31,7 +31,7 @@ There is no difference, it is a superset, so all the command line switches avail
 -W              also write the characters excluded from `-a` in final output
 ```
 The switches with `n` and `m` work the same as `{n,m}` does in regular expresions, so:  
-`tr2 -a 10 a A   ` will only apply matches to the first 10 characters, discard the rest.  
+`tr2 -a 10 a A   ` will only apply matches from characters 10 onwards, discard the rest.  
 `tr2 -aW 1,10 a A` will only apply matches to the first 10 characters, dont discard the rest.  
 `tr2 -n 5 -d a   ` will stop deleting charcater `a` after the 5th match.  
 `tr2 -n 2,5 a b  ` will replace at least 2, but not more than 5 characters `a` with character `b`.  
